@@ -277,8 +277,14 @@ def main():
         print("Random Number is : ", random_number)
         # ===Modify codes below=============
         # 위의 코드를 포함하여 자유로운 수정이 가능함
+        zero_flag = False
+
         while True:
             input_str = input('Input guess number : ')
+            if input_str == '0':
+                zero_flag = True
+                break
+
             if not is_validated_number(input_str):
                 print("Wrong Input, Input again")
                 continue
@@ -289,12 +295,22 @@ def main():
             if strikes == 3:
                 break
         
+        if zero_flag:
+            break
+        
         while True:
             y_or_n = input("You win, one more(Y/N) ?")
+            if y_or_n == '0':
+                zero_flag = True
+                break
+
             if is_yes(y_or_n) or is_no(y_or_n):
                 break
             else:
                 print("Wrong Input, Input again")
+        
+        if zero_flag:
+            break
         
         if is_yes(y_or_n):
             continue
