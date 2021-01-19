@@ -271,13 +271,36 @@ def is_no(one_more_input):
 
 def main():
     print("Play Baseball")
-    user_input = 999
-    random_number = str(get_not_duplicated_three_digit_number())
-    print("Random Number is : ", random_number)
-    # ===Modify codes below=============
-    # 위의 코드를 포함하여 자유로운 수정이 가능함
-    print(get_strikes_or_ball("999", random_number))
-    # ==================================
+
+    while True:
+        random_number = str(get_not_duplicated_three_digit_number())
+        print("Random Number is : ", random_number)
+        # ===Modify codes below=============
+        # 위의 코드를 포함하여 자유로운 수정이 가능함
+        while True:
+            input_str = input("Input guess number : ")
+            if not is_validated_number(input_str):
+                print("Wrong Input, Input again")
+                continue
+
+            strikes, balls = get_strikes_or_ball(input_str, random_number)
+            print(f"Strikes : {strikes} , Balls : {balls}")
+
+            if strikes == 3:
+                break
+        
+        while True:
+            y_or_n = input("You win, one more(Y/N) ?")
+            if is_yes(y_or_n) or is_no(y_or_n):
+                break
+            else:
+                print("Wrong Input, Input again")
+        
+        if is_yes(y_or_n):
+            continue
+        else:
+            break
+        # ==================================
     print("Thank you for using this program")
     print("End of the Game")
 
